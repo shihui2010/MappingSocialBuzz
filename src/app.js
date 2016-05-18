@@ -7,6 +7,12 @@ app.controller('mapController',function($scope, $http){
 		$scope.datasets = response;  //ajax request to fetch data into $scope.data
 		$scope.map;
 
+		// read broswer size
+		$scope.mapWidth = window.innerWidth;
+		$scope.mapHeight = window.innerHeight;
+		// console.log($scope.mapWidth);
+		// console.log($scope.mapHeight);
+
 		// initialize map
 		$scope.rootCenter = [];
 		$scope.rootCenter = $scope.datasets.features[0].properties.center;
@@ -70,7 +76,7 @@ function loadMarker(markers, datasets, map, zoomLevel){
 			marker.setDraggable(false);
 			var infowindow = new google.maps.InfoWindow();
 			var content = contentString(node);
-			console.log(content);
+			// console.log(content);
 			bindInfoWindow(marker, map, infowindow, content);
 			markers.push(marker);
 		}
