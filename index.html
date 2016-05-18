@@ -1,1 +1,15 @@
-Hello World
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+	<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Vol9xRaB5d9t_z66TSQI52Aqgoy6SQw&libraries=visualization"></script>
+	<script type="text/javascript" src="/src/maplabel-compiled.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script type="text/javascript" src="/src/app.js"></script>
+	</head>
+	<body>
+		<div ng-controller="mapController">
+			<div id="map" style="height:800px;width:800px;"></div>
+		</div>
+	</body>
+</html>
