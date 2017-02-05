@@ -62,7 +62,7 @@ function loadMarker(markers, datasets, map, zoomLevel){
 	for(i = 0; i < datasets.length; i ++){
 		node = datasets[i];
 		mapLabel =  new MapLabel({
-			text: node.top_words[0] + ' ,' + node.top_words[1] + ' ,' + node.top_words[2] + ' ,' + node.top_words[3],
+			text: node.topwords[0] + ' ,' + node.topwords[1] + ' ,' + node.topwords[2] + ' ,' + node.topwords[3],
 			position: new google.maps.LatLng(node.center[1], node.center[0]),
 			map: map,
 			fontSize: Math.log10(node.num_doc) + 10,
@@ -91,8 +91,8 @@ function bindInfoWindow(marker, map, infowindow, content){
 function contentString(node){
 	var str = '<p>Name: ' + node.name + '</p><p>Top Words: ';
 	var i;
-	for(i = 0; i < node.top_words.length; i ++){
-		str += node.top_words[i] + ' ';
+	for(i = 0; i < node.topwords.length; i ++){
+		str += node.topwords[i] + ' ';
 	}
 	str += '</p><p>Num of Documents: ' + node.num_doc + '</p>';
 	return str;
