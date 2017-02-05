@@ -34,7 +34,7 @@ app.controller('mapController',function($scope, $http){
 
 
 function initLoadMarker(datasets, map){
-	return loadMarker([], datasets, map, 13);
+	return loadMarker([], datasets, map, 15);
 }
 
 
