@@ -10,8 +10,6 @@ app.controller('mapController',function($scope, $http){
 		// read broswer size
 		$scope.mapWidth = window.innerWidth;
 		$scope.mapHeight = window.innerHeight;
-		// console.log($scope.mapWidth);
-		// console.log($scope.mapHeight);
 
 		// initialize map
 		$scope.rootCenter = [
