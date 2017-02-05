@@ -14,8 +14,10 @@ app.controller('mapController',function($scope, $http){
 		// console.log($scope.mapHeight);
 
 		// initialize map
-		$scope.rootCenter = [];
-		$scope.rootCenter = $scope.datasets.features[0].properties.center;
+		$scope.rootCenter = [
+          -87.6262909676922,
+          41.88338213476951
+        ];
 		$scope.map = initMap($scope.rootCenter[1], $scope.rootCenter[0], $scope.map);
 		
 		// draw markers
@@ -51,35 +53,32 @@ function loadMarker(markers, datasets, map, zoomLevel){
 	var marker;
 	var modelLevel;
 	var targetLevel;
-	if(zoomLevel < 12)
-		return;
-	if(zoomLevel < 14)
-		targetLevel = 1;
-	else if(zoomLevel < 16)
-		targetLevel = 2;
-	else if(zoomLevel < 19)
-		targetLevel = 3;
-	for(i = 0; i < datasets.features.length; i ++){
-		node = datasets.features[i].properties;
-		modelLevel = node.level;
-		if(modelLevel == targetLevel){
-			mapLabel =  new MapLabel({
-				text: node.top_words[0] + ',' + node.top_words[1] + ',' + node.top_words[2],
-				position: new google.maps.LatLng(node.center[1], node.center[0]),
-				map: map,
-				fontSize: Math.log10(node.num_documents) + 10,
-				align:'center'
-			});
-			marker = new google.maps.Marker();
-			marker.bindTo('map', mapLabel);
-			marker.bindTo('position', mapLabel);
-			marker.setDraggable(false);
-			var infowindow = new google.maps.InfoWindow();
-			var content = contentString(node);
-			// console.log(content);
-			bindInfoWindow(marker, map, infowindow, content);
-			markers.push(marker);
-		}
+	// if(zoomLevel < 12)
+	// 	return;
+	// if(zoomLevel < 14)
+	// 	targetLevel = 1;
+	// else if(zoomLevel < 16)
+	// 	targetLevel = 2;
+	// else if(zoomLevel < 19)
+	// 	targetLevel = 3;
+	for(i = 0; i < datasets.length; i ++){
+		node = datasets[i];
+		mapLabel =  new MapLabel({
+			text: node.top_words[0] + ' ,' + node.top_words[1] + ' ,' + node.top_words[2] + ' ,' + node.top_words[3],
+			position: new google.maps.LatLng(node.center[1], node.center[0]),
+			map: map,
+			fontSize: Math.log10(node.num_doc) + 10,
+			align:'center'
+		});
+		marker = new google.maps.Marker();
+		marker.bindTo('map', mapLabel);
+		marker.bindTo('position', mapLabel);
+		marker.setDraggable(false);
+		var infowindow = new google.maps.InfoWindow();
+		var content = contentString(node);
+		// console.log(content);
+		bindInfoWindow(marker, map, infowindow, content);
+		markers.push(marker);
 	}
 	return markers;
 }
@@ -92,12 +91,12 @@ function bindInfoWindow(marker, map, infowindow, content){
 }
 
 function contentString(node){
-	var str = '<p>Level: ' + node.level.toString() + '</p>' + '<p>Top Words: ';
+	var str = '<p>Name: ' + node.name + '</p><p>Top Words: ';
 	var i;
 	for(i = 0; i < node.top_words.length; i ++){
 		str += node.top_words[i] + ' ';
 	}
-	str += '</p><p>Num of Documents: ' + node.num_documents.toString() + '</p>';
+	str += '</p><p>Num of Documents: ' + node.num_doc + '</p>';
 	return str;
 }
 
