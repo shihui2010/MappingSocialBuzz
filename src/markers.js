@@ -31,10 +31,10 @@ function loadMarker(datasets, map){
 	for(i = 0; i < datasets.length; i ++){
 		node = datasets[i];
 		if(node.is_poi){
-			drawMarker(map, node.lat, node.lon, node.name, "#FF4000");
+			drawMarker(map, node.lat, node.lon, node.name, "FE7569");
 		}
 		else{
-			drawMarker(map, node.center[0], node.center[1], node.word, "#2EFE2E")
+			drawMarker(map, node.center[0], node.center[1], node.word, "2EFE2E")
 			drawEllipse(map, node.center[0], node.center[1], node.var_x, node.var_y, node.rho);
 		}
 	}
